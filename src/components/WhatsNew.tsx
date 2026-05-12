@@ -37,7 +37,7 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
   const hasMoved = useRef(false);
 
   useEffect(() => {
-    gsap.set(overlayRef.current, { y: 400 });
+    gsap.set(overlayRef.current, { y: 600 });
     gsap.set(cursorRef.current, { scale: 0, opacity: 0, x: -999, y: -999 });
   }, []);
 
@@ -50,7 +50,7 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
   const onMouseLeave = useCallback(() => {
     hasMoved.current = false;
     gsap.killTweensOf([overlayRef.current, cursorRef.current, cardRef.current]);
-    gsap.to(overlayRef.current, { y: 400, duration: 0.6, ease: 'power3.in' });
+    gsap.to(overlayRef.current, { y: 500, duration: 0.6, ease: 'power1.in' });
     gsap.to(cursorRef.current, { scale: 0, opacity: 0, duration: 0.25, ease: 'power2.in' });
     gsap.to(cardRef.current, { y: 0, duration: 0.4, ease: 'power2.out' });
   }, []);
@@ -74,7 +74,7 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
   return (
     <div
       ref={cardRef}
-      className="flex flex-col gap-3 cursor-none group"
+      className="flex flex-col gap-3 cursor-none group relative"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
@@ -93,57 +93,43 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
           </span>
         )}
 
-        {/* Arc overlay — blurry glass with arc mask */}
+        {/* Arc overlay — SVG arc tint + blur layer masked to arc shape */}
         <div
           ref={overlayRef}
           className="absolute left-0 right-0 pointer-events-none z-10"
           style={{ bottom: 0, height: 'calc(100% + 80px)', top: 'auto' }}
         >
-          {/* Full blur fill */}
+          {/* Blur layer masked to arc shape using inline SVG data URI */}
           <div
             className="absolute inset-0"
             style={{
-              backdropFilter: 'blur(16px) brightness(0.8)',
-              WebkitBackdropFilter: 'blur(16px) brightness(0.8)',
-              maskImage: 'url(#arc-mask)',
-              WebkitMaskImage: 'url(#arc-mask)',
+              backdropFilter: 'blur(20px) brightness(0.75)',
+              WebkitBackdropFilter: 'blur(20px) brightness(0.75)',
+              maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,18 Q50,0 100,18 L100,100 L0,100 Z' fill='white'/%3E%3C/svg%3E")`,
+              WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,18 Q50,0 100,18 L100,100 L0,100 Z' fill='white'/%3E%3C/svg%3E")`,
+              maskSize: '100% 100%',
+              WebkitMaskSize: '100% 100%',
             }}
           />
-          {/* SVG arc shape drawn on top as a semi-transparent glass tint */}
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,20 Q50,0 100,20 L100,100 L0,100 Z"
-              fill="rgba(255,255,255,0.15)"
-            />
+          {/* Glass tint on top */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0,18 Q50,0 100,18 L100,100 L0,100 Z" fill="rgba(255,255,255,0.12)" />
           </svg>
-        </div>
-
-        {/* Custom cursor */}
-        <div
-          ref={cursorRef}
-          className="absolute pointer-events-none z-30 -translate-x-1/2 -translate-y-1/2 top-0 left-0"
-        >
-          <div className="w-20 h-20 rounded-full bg-[#b2f6e3] flex items-center justify-center">
-            <span className="text-black font-bold text-2xl">↗</span>
-          </div>
         </div>
       </div>
 
       {/* Meta */}
-      <div className="flex items-center gap-3 text-[13px] text-black/50 font-sans">
-        <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-2 text-[13px] text-black/50 font-sans">
+        <div className="flex text-grey-500 text-[15px] font-sans font-semibold items-center gap-1 bg-white px-3 rounded-full py-1">
           <div className="relative w-5 h-5 rounded-full overflow-hidden flex-shrink-0 bg-white">
             <Image src={post.authorImg} alt={post.author} fill className="object-cover" sizes="20px" />
           </div>
+          
           <span>{post.author}</span>
         </div>
-        <span>·</span>
-        <div className="flex items-center gap-1">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+       
+        <div className="flex text-grey-500 font-sans text-[15px] font-semibold items-center gap-1 bg-white px-3 rounded-full py-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>{post.readTime}</span>
         </div>
       </div>
@@ -152,6 +138,16 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
       <h3 className="text-black font-bold font-sans text-[22px] leading-snug">
         {post.title}
       </h3>
+
+      {/* Custom cursor — positioned over whole card */}
+      <div
+        ref={cursorRef}
+        className="absolute pointer-events-none z-30 -translate-x-1/2 -translate-y-1/2 top-0 left-0"
+      >
+        <div className="w-20 h-20 rounded-full bg-[#b2f6e3] flex items-center justify-center">
+          <span className="text-black font-bold text-2xl">↗</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -161,7 +157,7 @@ export default function WhatsNew() {
     <section className="px-6 py-14">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-black font-bold font-sans text-[64px] leading-none flex items-end gap-3">
+        <h2 className="text-black font-semibold font-sans text-[68px] leading-none flex items-end gap-3">
           What&apos;s
           <span className="inline-block w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 mb-1">
             <Image
@@ -175,7 +171,7 @@ export default function WhatsNew() {
           New
         </h2>
 
-        <button className="relative bg-white border border-black/10 text-black text-[14px] font-semibold px-5 py-2.5 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group shadow-sm flex-shrink-0">
+        <button className="relative bg-white text-black text-[15px] font-semibold px-5.5 py-3.5 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group flex-shrink-0">
           <div className="relative overflow-hidden flex items-center gap-1 h-[1.2em]">
             <span className="absolute inset-0 flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] group-hover:-translate-y-[140%]">
               Explore More Thoughts <span>↗</span>
