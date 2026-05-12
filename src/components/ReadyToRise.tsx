@@ -2,62 +2,82 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitText from 'gsap/SplitText';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const WORDS = ['Ready', 'to', 'Rise'];
+const TEXT = 'Get Ready Together to Rise at Seven';
 
 export default function ReadyToRise() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const container = containerRef.current;
+
+    if (!section || !container) return;
 
     const ctx = gsap.context(() => {
-      wordRefs.current.forEach((el, i) => {
-        if (!el) return;
-
-        // Each word starts progressively higher and more to the right
-        const xFrom = 60 + i * 80;
-        const yFrom = -(80 + i * 60);
-        const rotFrom = 8 + i * 6;
-
-        gsap.fromTo(el,
-          { x: xFrom, y: yFrom, rotation: rotFrom },
-          {
-            x: 0,
-            y: 0,
-            rotation: 0,
-            ease: 'elastic.out(1, 0.5)',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              end: 'top 20%',
-              scrub: 1.5,
-            },
-          }
-        );
+      const split = new SplitText(container, {
+        type: 'chars',
+        charsClass: 'char',
       });
+
+      // Start chars slightly above
+      gsap.set(split.chars, {
+        y: -80,
+      });
+
+      // Start ENTIRE sentence fully outside right edge
+      gsap.set(container, {
+        x: window.innerWidth + 300,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'bottom 20%',
+          scrub: 1,
+        },
+      });
+
+      // Continuous horizontal movement
+      tl.to(container, {
+        x: -container.offsetWidth - 400,
+        ease: 'none',
+        duration: 1,
+      });
+
+      // Waterfall drop happens DURING movement
+      tl.to(
+        split.chars,
+        {
+          y: 0,
+          stagger: 0.03,
+          duration: 0.18,
+          ease: 'power2.out',
+        },
+        0.05
+      );
     }, section);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="px-6 py-24 overflow-hidden">
-      <div className="flex items-baseline gap-6 flex-wrap">
-        {WORDS.map((word, i) => (
-          <span
-            key={i}
-            ref={(el) => { wordRefs.current[i] = el; }}
-            className="inline-block text-black font-bold font-sans text-[120px] leading-none"
-            style={{ transformOrigin: 'bottom left' }}
-          >
-            {word}
-          </span>
-        ))}
+    <section
+      ref={sectionRef}
+      className="min-h-screen overflow-hidden flex items-center"
+    >
+      <div
+        ref={containerRef}
+        className="absolute whitespace-nowrap will-change-transform"
+      >
+        <h1 className="text-black font-bold font-sans text-[120px] leading-none">
+          {TEXT}
+        </h1>
       </div>
     </section>
   );

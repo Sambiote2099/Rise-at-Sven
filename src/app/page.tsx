@@ -52,6 +52,7 @@ export default function Home() {
       <div
         className={`fixed inset-0 z-30 backdrop-blur-lg transition-opacity duration-300 pointer-events-none ${navOpen ? 'opacity-100' : 'opacity-0'}`}
       />
+
       <CurtainReveal />
       
       <main className="px-2.5 py-2.5">

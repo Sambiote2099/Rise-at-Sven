@@ -12,7 +12,7 @@ export default function CurtainReveal() {
     gsap.to(curtainRef.current, {
       yPercent: -200,
       duration: 1.5,
-      ease: "power1.inOut",
+      ease: "power4.inOut",
       delay: 0.3,
     });
   }, []);
