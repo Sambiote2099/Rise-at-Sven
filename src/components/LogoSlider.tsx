@@ -13,7 +13,7 @@ const LOGOS = [
 ];
 
 const AUTO_SPEED = 0.5; // px per frame during auto-scroll
-const FRICTION = 1.92;  // velocity decay per frame
+const FRICTION = 0.92;  // velocity decay per frame
 const items = [...LOGOS, ...LOGOS];
 
 export default function LogoSlider() {
@@ -40,6 +40,10 @@ export default function LogoSlider() {
         if (Math.abs(velocityRef.current) > 0.1) {
           offsetRef.current += velocityRef.current;
           velocityRef.current *= FRICTION;
+
+          if (Math.abs(velocityRef.current) < 0.1) {
+            velocityRef.current = 0;
+          }
         } else {
           velocityRef.current = 0;
           offsetRef.current -= AUTO_SPEED;

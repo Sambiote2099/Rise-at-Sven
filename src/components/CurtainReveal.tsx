@@ -10,10 +10,10 @@ export default function CurtainReveal() {
     if (!curtainRef.current) return;
 
     gsap.to(curtainRef.current, {
-      yPercent: -200,
-      duration: 1.5,
-      ease: "power4.inOut",
-      delay: 0.3,
+      yPercent: -105,
+      duration: 2,
+      ease: "power1.out"
+      
     });
   }, []);
 

@@ -161,37 +161,47 @@ export default function Navbar({ onMenuChange }: { onMenuChange?: (open: boolean
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Check if at top
-      setIsAtTop(currentScrollY < 10);
-      
-      // Determine scroll direction
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+    // Detect top
+    setIsAtTop(currentScrollY < 10);
+
+    // Show when scrolling up
+    if (currentScrollY < lastScrollY) {
+      setIsVisible(true);
+    }
+
+    // Hide when scrolling down
+    else if (currentScrollY > lastScrollY) {
+      setIsVisible(false);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, [lastScrollY]);
 
   return (
-    <nav
-      className={`w-full rounded-full px-5 py-2.5 flex items-center justify-between relative transition-all duration-500 ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      } ${
-        isAtTop ? 'bg-transparent' : 'bg-white/30 backdrop-blur-md'
-      }`}
-      onMouseLeave={() => setMenu(null)}
-    >
+   <nav
+  className={`fixed top-12 left-0 right-0 z-[999] mx-auto mt-4 w-[98%]
+  rounded-full px-5 py-2.5 flex items-center justify-between
+  transition-transform transition-colors duration-500 ease-in-out
+  ${
+    isVisible ? 'translate-y-0' : '-translate-y-[140%]'
+  }
+  ${
+    isAtTop
+      ? 'bg-transparent'
+      : 'bg-white/30 backdrop-blur-md shadow-lg'
+  }`}
+  onMouseLeave={() => setMenu(null)}
+>
      
       
       {/* Logo */}

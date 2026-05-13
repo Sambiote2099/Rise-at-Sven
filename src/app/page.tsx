@@ -41,7 +41,7 @@ export default function Home() {
         opacity: 1,
         duration: 0.7,
         ease: "power3.inOut",
-        delay: 1.5, // after text animations finish
+        delay: 2, // after text animations finish
       }
     );
   }, []);
@@ -72,9 +72,9 @@ export default function Home() {
 
         <section className="relative mt-2 h-[620px] rounded-3xl overflow-hidden">
           {/* Fixed navbar outside overflow-hidden hero */}
-      <div className="absolute top-0 left-0 right-0 z-40 pt-2">
+    
         <Navbar onMenuChange={setNavOpen} />
-      </div>
+      
             
             <div className="absolute inset-0 z-20 mt-28 items-center flex flex-col font-sans font-semibold text-[14px]">
               <p>#1MOST RECOMMENDED</p>
@@ -90,12 +90,12 @@ export default function Home() {
             </div>
 
             <div className="absolute gap-3 inset-0 z-10 flex top-44 justify-center text-white text-[125px] font-sans font-semibold">
-              <AnimatedTextDown text="We" delay={0.9} />
-              <AnimatedTextDown text="Create" delay={0.95} />
+              <AnimatedTextDown text="We" delay={1.4} />
+              <AnimatedTextDown text="Create" delay={1.45} />
             </div>
 
             <div className="absolute gap-3 inset-0 z-10 flex items-center top-36 justify-center text-white text-[125px] font-sans font-semibold">
-              <AnimatedTextDown text="Category" delay={0.9} />
+              <AnimatedTextDown text="Category" delay={1.4} />
 
               {/* Inline image — starts at width 0, expands from center */}
               <div
@@ -112,7 +112,7 @@ export default function Home() {
                 />
               </div>
 
-              <AnimatedTextDown text="Leaders" delay={0.95} />
+              <AnimatedTextDown text="Leaders" delay={1.45} />
             </div>
             <div className="absolute inset-0 z-10 flex items-center top-90 justify-center text-white text-[28px] font-sans font-semibold">
               on every searchable platform
