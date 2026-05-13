@@ -195,8 +195,8 @@ export default function FeaturedWork() {
         {/* Left — text track */}
         <div className="w-1/2 overflow-hidden relative flex items-center">
           <p className="absolute top-20 left-10 font-semibold text-white text-xl font-sans z-50">Featured Work</p>
-          <div className="absolute inset-x-0 top-0 h-92 bg-gradient-to-b from-black from-50% via-black/40 via-60% to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black from-50% via-black/40 via-70% to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-92 rounded-3xl bg-gradient-to-b from-black from-50% via-black/40 via-60% to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-64 rounded-3xl bg-gradient-to-t from-black from-50% via-black/40 via-70% to-transparent z-10 pointer-events-none" />
 
           <div ref={textTrackRef} className="flex mt-74 flex-col pl-10">
             {ITEMS.map((item, i) => (
