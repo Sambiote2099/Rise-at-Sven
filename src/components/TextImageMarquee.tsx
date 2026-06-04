@@ -99,11 +99,11 @@ export default function TextImageMarquee() {
           {track.map((item, i) => (
             <div key={i} className="flex-shrink-0 flex items-center mx-6">
               {item.type === 'text' ? (
-                <span className="text-black font-semibold font-sans text-[182px] leading-none whitespace-nowrap">
+                <span className="text-black font-semibold font-sans text-[80px] sm:text-[120px] md:text-[182px] leading-none whitespace-nowrap">
                   {item.content}
                 </span>
               ) : (
-                <div className="relative w-40 h-40 mb-8 rounded-3xl overflow-hidden flex-shrink-0">
+                <div className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-4 sm:mb-6 md:mb-8 rounded-3xl overflow-hidden flex-shrink-0">
                   <Image src={item.content} alt="" fill className="object-cover w-full h-full" />
                 </div>
               )}

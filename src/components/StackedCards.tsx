@@ -100,21 +100,21 @@ export default function StackedCards() {
 
   return (
     <div ref={sectionRef} className="relative flex items-center justify-center" style={{ height: '100vh' }}>
-      <div className="relative w-full max-w-xl" style={{ height: '560px' }}>
+      <div className="relative w-full max-w-xl px-4" style={{ height: '560px' }}>
         {CARDS.map((card, i) => (
           <div
             key={i}
             ref={(el) => { cardRefs.current[i] = el; }}
-            className={`absolute inset-0 w-full rounded-3xl p-10 flex flex-col items-center text-center ${card.bg} shadow-2xl`}
+            className={`absolute inset-0 w-full rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center ${card.bg} shadow-2xl`}
           >
-            <div className="relative w-48 h-60 rounded-2xl overflow-hidden mb-5 flex-shrink-0">
+            <div className="relative w-32 h-44 sm:w-48 sm:h-60 rounded-2xl overflow-hidden mb-3 sm:mb-5 flex-shrink-0">
               <Image src={card.image} alt={card.title} fill className="object-cover" sizes="192px" />
             </div>
-            <h3 className={`font-bold font-sans text-[52px] leading-none mb-4 ${card.titleColor}`}>
+            <h3 className={`font-bold font-sans text-[36px] sm:text-[52px] leading-none mb-3 sm:mb-4 ${card.titleColor}`}>
               {card.title}
             </h3>
-            <p className={`font-sans text-[15px] leading-relaxed mb-3 ${card.bodyColor}`}>{card.body1}</p>
-            <p className={`font-sans text-[15px] leading-relaxed ${card.bodyColor}`}>{card.body2}</p>
+            <p className={`font-sans text-[13px] sm:text-[15px] leading-relaxed mb-2 sm:mb-3 ${card.bodyColor}`}>{card.body1}</p>
+            <p className={`font-sans text-[13px] sm:text-[15px] leading-relaxed ${card.bodyColor}`}>{card.body2}</p>
           </div>
         ))}
       </div>

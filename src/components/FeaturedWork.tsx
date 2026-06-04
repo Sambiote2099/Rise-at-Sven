@@ -11,7 +11,7 @@ const ITEMS = [
   { client: 'Xbox', project: 'Game Pass Launch', stat: '500k new subscribers\nin 30 days', color: '#1a6b3a', image: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=800&auto=format&fit=crop' },
   { client: 'Adidas', project: 'Run for the Oceans', stat: '12m impressions\nacross social & search', color: '#2a4a7a', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop' },
   { client: 'Rise at Seven', project: 'Search-First Strategy', stat: '#1 ranked agency\nfor content marketing', color: '#6b3a8a', image: 'https://images.unsplash.com/photo-1778071073381-1a4dc5650727?q=80&w=800&auto=format&fit=crop' },
-  { client: 'Content Experience', project: 'Semantic Relevancy', stat: '300% uplift in\ntopical authority', color: '#8a3a3a', image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop' },
+  { client: 'Content Hub', project: 'Semantic Relevancy', stat: '300% uplift in\ntopical authority', color: '#8a3a3a', image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop' },
   { client: 'Digital PR', project: 'Category Signals', stat: '800+ links earned\nin 6 months', color: '#3a6b5c', image: 'https://images.unsplash.com/photo-1553013746-013d9c76dfa2?q=80&w=800&auto=format&fit=crop' },
   { client: 'B2B Marketing', project: 'Demand Generation', stat: '4x pipeline growth\nthrough search', color: '#7a5a1a', image: 'https://images.unsplash.com/photo-1777266450837-94423d75af89?q=80&w=800&auto=format&fit=crop' },
   { client: 'Social SEO', project: 'Platform Growth', stat: '1m+ TikTok views\ndriven by SEO content', color: '#1a5a6b', image: 'https://plus.unsplash.com/premium_photo-1722018576685-45a415a4ff67?q=80&w=800&auto=format&fit=crop' },
@@ -190,10 +190,11 @@ export default function FeaturedWork() {
 
   return (
     <div ref={sectionRef} className="relative bg-black rounded-3xl">
-      <div className="sticky top-0 h-screen flex overflow-hidden">
+      {/* Desktop: side-by-side scroll layout */}
+      <div className="hidden md:flex sticky top-0 h-screen overflow-hidden">
 
         {/* Left — text track */}
-        <div className="w-1/2 overflow-hidden relative flex items-center">
+        <div className="w-1/2 overflow-hidden relative flex items-center h-screen">
           <p className="absolute top-20 left-10 font-semibold text-white text-xl font-sans z-50">Featured Work</p>
           <div className="absolute inset-x-0 top-0 h-92 rounded-3xl bg-gradient-to-b from-black from-50% via-black/40 via-60% to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 h-64 rounded-3xl bg-gradient-to-t from-black from-50% via-black/40 via-70% to-transparent z-10 pointer-events-none" />
@@ -207,7 +208,7 @@ export default function FeaturedWork() {
                 onMouseEnter={handleEnter(i)}
                 onMouseLeave={handleLeave}
               >
-                <h3 className="text-white font-semibold font-sans text-[74px] leading-[1.1]">{item.client}</h3>
+                <h3 className="text-white font-semibold font-sans text-[56px] lg:text-[74px] leading-[1.1]">{item.client}</h3>
               </div>
             ))}
           </div>
@@ -228,6 +229,24 @@ export default function FeaturedWork() {
           </div>
         </div>
 
+      </div>
+
+      {/* Mobile: simple stacked cards */}
+      <div className="md:hidden flex flex-col p-4 gap-4">
+        <p className="font-semibold text-white text-xl font-sans pt-4 pb-2">Featured Work</p>
+        {ITEMS.map((item, i) => (
+          <div key={i} className="flex flex-col gap-2">
+            <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: '260px' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={item.image} alt={item.client} className="w-full h-full object-cover" />
+              <div className="absolute bottom-3 right-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[12px] font-sans font-medium">
+                {item.project}
+              </div>
+            </div>
+            <h3 className="text-white font-semibold font-sans text-[32px] leading-[1.1]">{item.client}</h3>
+            <p className="text-white/70 font-sans text-[14px] whitespace-pre-line">{item.stat}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

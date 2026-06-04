@@ -70,37 +70,38 @@ export default function Home() {
           </button>
         </section>
 
-        <section className="relative mt-2 h-[620px] rounded-3xl overflow-hidden">
+        <section className="relative mt-2 h-[420px] sm:h-[520px] md:h-[620px] rounded-3xl overflow-hidden">
           {/* Fixed navbar outside overflow-hidden hero */}
     
         <Navbar onMenuChange={setNavOpen} />
       
             
-            <div className="absolute inset-0 z-20 mt-28 items-center flex flex-col font-sans font-semibold text-[14px]">
+            <div className="absolute inset-0 z-20 mt-20 sm:mt-24 md:mt-28 items-center flex flex-col font-sans font-semibold text-[12px] sm:text-[13px] md:text-[14px]">
               <p>#1MOST RECOMMENDED</p>
             </div>
-            <div className="absolute inset-0 z-20 mt-32 items-center flex flex-col font-sans font-semibold text-[14px]">
+            <div className="absolute inset-0 z-20 mt-24 sm:mt-28 md:mt-32 items-center flex flex-col font-sans font-semibold text-[12px] sm:text-[13px] md:text-[14px]">
               <p>CONTENT MARKETING AGENCY</p>
               <Image
                   src="https://res.cloudinary.com/diasvvkil/image/upload/v1778518931/Screenshot_11-5-2026_225558_riseatseven.com-removebg-preview_luiapj.png"
                   alt="Leaderboard"
                   width={305}
                   height={47}
+                  className="w-[180px] sm:w-[240px] md:w-[305px] h-auto"
                 />
             </div>
 
-            <div className="absolute gap-3 inset-0 z-10 flex top-44 justify-center text-white text-[125px] font-sans font-semibold">
+            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex top-32 sm:top-38 md:top-44 justify-center text-white text-[52px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
               <AnimatedTextDown text="We" delay={1.4} />
               <AnimatedTextDown text="Create" delay={1.45} />
             </div>
 
-            <div className="absolute gap-3 inset-0 z-10 flex items-center top-36 justify-center text-white text-[125px] font-sans font-semibold">
+            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex items-center top-24 sm:top-30 md:top-36 justify-center text-white text-[52px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
               <AnimatedTextDown text="Category" delay={1.4} />
 
               {/* Inline image — starts at width 0, expands from center */}
               <div
                 ref={inlineImageRef}
-                className="overflow-hidden rounded-2xl flex-shrink-0 h-31"
+                className="overflow-hidden rounded-2xl flex-shrink-0 h-14 sm:h-22 md:h-31 hidden sm:block"
                 style={{ width: 0, opacity: 0 }}
               >
                 <Image
@@ -114,7 +115,7 @@ export default function Home() {
 
               <AnimatedTextDown text="Leaders" delay={1.45} />
             </div>
-            <div className="absolute inset-0 z-10 flex items-center top-90 justify-center text-white text-[28px] font-sans font-semibold">
+            <div className="absolute inset-0 z-10 flex items-center top-64 sm:top-76 md:top-90 justify-center text-white text-[14px] sm:text-[20px] md:text-[28px] font-sans font-semibold px-4 text-center">
               on every searchable platform
             </div>
         
@@ -128,15 +129,14 @@ export default function Home() {
           />
 
           {/* Bottom left & right text */}
-          <div className="absolute left-4 right-4 bottom-4 z-10 flex items-end justify-between text-white text-[15px] font-sans">
-            <div className="flex flex-col">
-              <p>Organic media planners creating, distributing & optimising</p>
-              <div className="flex flex-row gap-1">
-                <p className="font-bold">search-first</p> <p> content for SEO, Social, PR, Ai and LLM search </p>
+          <div className="absolute left-4 right-4 bottom-4 z-10 flex items-end justify-between text-white text-[11px] sm:text-[13px] md:text-[15px] font-sans">
+            <div className="flex flex-col max-w-[60%] sm:max-w-none">
+              <p className="hidden sm:block">Organic media planners creating, distributing & optimising</p>
+              <div className="flex flex-row gap-1 flex-wrap">
+                <p className="font-bold">search-first</p> <p className="hidden sm:block"> content for SEO, Social, PR, Ai and LLM search</p>
               </div>
-              
             </div>
-            <div className="flex flex-col items-end font-bold">
+            <div className="flex flex-col items-end font-bold text-right">
               <p>4 Global Offices serving</p>
               <p>UK, USA (New York) & EU</p>
             </div>
@@ -149,21 +149,21 @@ export default function Home() {
         </section>
 
         {/* Driving Demand section */}
-        <section className="flex justify-between px-6 py-14">
+        <section className="flex flex-col md:flex-row md:justify-between px-4 sm:px-6 py-8 sm:py-12 md:py-14 gap-6 md:gap-4">
           {/* Left: description */}
-          <p className="text-black font-semibold font-sans text-xl mt-2">
-            A global team of search-first content marketers<br />
-            engineering semantic relevancy &amp; category<br />
+          <p className="text-black font-semibold font-sans text-base sm:text-lg md:text-xl mt-0 md:mt-2 max-w-full md:max-w-[340px]">
+            A global team of search-first content marketers
+            engineering semantic relevancy &amp; category
             signals for both the internet and people
           </p>
 
           {/* Right: heading + buttons */}
-          <div className="flex flex-col gap-6 max-w-[560px]">
-            <h2 className="text-black font-sans font-bold text-[64px] leading-[1.05]">
+          <div className="flex flex-col gap-4 sm:gap-6 max-w-full md:max-w-[560px]">
+            <h2 className="text-black font-sans font-bold text-[36px] sm:text-[50px] md:text-[64px] leading-[1.05]">
               Driving Demand &amp;{' '}
               <span className="inline-flex items-end gap-2 flex-wrap">
                 Discovery
-                <span className="inline-block w-17 h-17 rounded-xl overflow-hidden flex-shrink-0 mb-1">
+                <span className="inline-block w-12 h-12 sm:w-14 sm:h-14 md:w-17 md:h-17 rounded-xl overflow-hidden flex-shrink-0 mb-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://images.unsplash.com/photo-1553013746-013d9c76dfa2?w=200&auto=format&fit=crop"
@@ -174,8 +174,8 @@ export default function Home() {
               </span>
             </h2>
 
-            <div className="flex items-center gap-3">
-              <button className="relative bg-white border border-black/10 text-black text-[14px] font-semibold px-6 py-3.5 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group shadow-sm">
+            <div className="flex items-center gap-3 flex-wrap">
+              <button className="relative bg-white border border-black/10 text-black text-[13px] sm:text-[14px] font-semibold px-5 sm:px-6 py-3 sm:py-3.5 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group shadow-sm">
                 <div className="relative overflow-hidden flex items-center gap-1 h-[1.2em]">
                   <span className="absolute inset-0 flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] group-hover:-translate-y-[140%]">
                     Our Story <span>↗</span>
@@ -187,7 +187,7 @@ export default function Home() {
                 </div>
               </button>
 
-              <button className="relative text-black text-[14px] font-semibold px-6 py-3.5 rounded-[25px] duration-300 transition-all whitespace-nowrap overflow-hidden group">
+              <button className="relative text-black text-[13px] sm:text-[14px] font-semibold px-5 sm:px-6 py-3 sm:py-3.5 rounded-[25px] duration-300 transition-all whitespace-nowrap overflow-hidden group">
                 <div className="relative overflow-hidden flex items-center gap-1 h-[1.2em]">
                   <span className="absolute inset-0 flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] group-hover:-translate-y-[140%]">
                     Our Services <span>↗</span>
@@ -219,12 +219,12 @@ export default function Home() {
         </section>
 
         {/* Our Services section */}
-        <section className="px-6 py-14">
+        <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-14">
           {/* Header row */}
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-black font-semibold font-sans text-[74px] leading-none flex items-end gap-3">
+          <div className="flex items-center justify-between mb-6 gap-4">
+            <h2 className="text-black font-semibold font-sans text-[40px] sm:text-[56px] md:text-[74px] leading-none flex items-end gap-2 sm:gap-3">
               Our
-              <span className="inline-block w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 mb-1">
+              <span className="inline-block w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden flex-shrink-0 mb-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&auto=format&fit=crop"
@@ -236,7 +236,7 @@ export default function Home() {
             </h2>
 
             {/* View All Services button */}
-            <button className="relative bg-white text-black text-[15px] font-semibold px-5 py-4 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group flex-shrink-0">
+            <button className="relative bg-white text-black text-[13px] sm:text-[15px] font-semibold px-4 sm:px-5 py-3 sm:py-4 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group flex-shrink-0">
               <div className="relative overflow-hidden flex items-center gap-1 h-[1.2em]">
                 <span className="absolute inset-0 flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] group-hover:-translate-y-[140%]">
                   View All Services <span>↗</span>
@@ -253,14 +253,14 @@ export default function Home() {
           <div className="border-t border-black/20" />
 
           {/* Services grid */}
-          <div className="flex ml-8 mt-8">
+          <div className="flex flex-col sm:flex-row sm:ml-4 md:ml-8 mt-8 gap-0 sm:gap-4">
             <div className="flex-1">
               {[
                 { label: 'Digital PR', image: 'https://images.unsplash.com/photo-1553013746-013d9c76dfa2?w=600&auto=format&fit=crop' },
                 { label: 'Search & Growth Strategy', image: 'https://images.unsplash.com/photo-1778071073381-1a4dc5650727?w=600&auto=format&fit=crop' },
                 { label: 'Data & Insights', image: 'https://images.unsplash.com/photo-1777266450837-94423d75af89?w=600&auto=format&fit=crop' },
               ].map((s, i, arr) => (
-                <ServiceItem key={s.label} label={s.label} image={s.image} showDivider={i < arr.length - 1} paddingClass="pr-10" />
+                <ServiceItem key={s.label} label={s.label} image={s.image} showDivider={i < arr.length - 1} paddingClass="sm:pr-10" />
               ))}
             </div>
             <div className="flex-1">
@@ -269,7 +269,7 @@ export default function Home() {
                 { label: 'Content Experience', image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&auto=format&fit=crop' },
                 { label: 'Onsite SEO', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop' },
               ].map((s, i, arr) => (
-                <ServiceItem key={s.label} label={s.label} image={s.image} showDivider={i < arr.length - 1} paddingClass="pl-10" />
+                <ServiceItem key={s.label} label={s.label} image={s.image} showDivider={i < arr.length - 1} paddingClass="sm:pl-10" />
               ))}
             </div>
           </div>

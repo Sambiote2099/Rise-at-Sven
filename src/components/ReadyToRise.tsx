@@ -75,7 +75,7 @@ export default function ReadyToRise() {
         ref={containerRef}
         className="absolute whitespace-nowrap will-change-transform"
       >
-        <h1 className="text-black font-bold font-sans text-[120px] leading-none">
+        <h1 className="text-black font-bold font-sans leading-none" style={{ fontSize: 'clamp(48px, 10vw, 120px)' }}>
           {TEXT}
         </h1>
       </div>

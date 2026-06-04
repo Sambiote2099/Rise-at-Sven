@@ -154,12 +154,12 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
 
 export default function WhatsNew() {
   return (
-    <section className="px-6 py-14">
+    <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-14">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-black font-semibold font-sans text-[68px] leading-none flex items-end gap-3">
+      <div className="flex items-center justify-between mb-6 gap-4">
+        <h2 className="text-black font-semibold font-sans text-[40px] sm:text-[56px] md:text-[68px] leading-none flex items-end gap-2 sm:gap-3">
           What&apos;s
-          <span className="inline-block w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 mb-1">
+          <span className="inline-block w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl overflow-hidden flex-shrink-0 mb-1">
             <Image
               src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=200&auto=format&fit=crop"
               alt=""
@@ -171,14 +171,14 @@ export default function WhatsNew() {
           New
         </h2>
 
-        <button className="relative bg-white text-black text-[15px] font-semibold px-5.5 py-3.5 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group flex-shrink-0">
+        <button className="relative bg-white text-black text-[13px] sm:text-[15px] font-semibold px-4 sm:px-5.5 py-3 sm:py-3.5 rounded-[25px] hover:rounded-lg duration-500 transition-all whitespace-nowrap overflow-hidden group flex-shrink-0">
           <div className="relative overflow-hidden flex items-center gap-1 h-[1.2em]">
             <span className="absolute inset-0 flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] group-hover:-translate-y-[140%]">
-              Explore More Thoughts <span>↗</span>
+              <span className="hidden sm:inline">Explore More Thoughts </span><span className="sm:hidden">More </span><span>↗</span>
             </span>
-            <span className="invisible flex items-center gap-1">Explore More Thoughts ↗</span>
+            <span className="invisible flex items-center gap-1"><span className="hidden sm:inline">Explore More Thoughts </span><span className="sm:hidden">More </span>↗</span>
             <span className="absolute inset-0 flex items-center gap-1 translate-y-[140%] transition-all duration-500 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] group-hover:translate-y-0">
-              Explore More Thoughts <span>↗</span>
+              <span className="hidden sm:inline">Explore More Thoughts </span><span className="sm:hidden">More </span><span>↗</span>
             </span>
           </div>
         </button>
@@ -188,7 +188,7 @@ export default function WhatsNew() {
       <div className="border-t border-black/20 mb-8" />
 
       {/* Cards */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {POSTS.map((post, i) => (
           <PostCard key={i} post={post} />
         ))}

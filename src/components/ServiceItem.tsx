@@ -27,7 +27,7 @@ export default function ServiceItem({ label, image, showDivider = true, paddingC
         </div>
 
         {/* Label */}
-        <p className="relative text-black group-hover:text-white font-semibold font-sans text-[40px] leading-none py-1 transition-all duration-500 group-hover:translate-x-6">
+        <p className="relative text-black group-hover:text-white font-semibold font-sans text-[24px] sm:text-[32px] md:text-[40px] leading-none py-1 transition-all duration-500 group-hover:translate-x-6">
           {label}
         </p>
       </div>
