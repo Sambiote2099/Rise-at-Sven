@@ -26,7 +26,11 @@ const IMAGES = [
 
 export default function Home() {
   const inlineImageRef = useRef<HTMLDivElement>(null);
-  const [image] = useState(() => IMAGES[Math.floor(Math.random() * IMAGES.length)]);
+  const [image, setImage] = useState(IMAGES[0]);
+
+  useEffect(() => {
+    setImage(IMAGES[Math.floor(Math.random() * IMAGES.length)]);
+  }, []);
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
