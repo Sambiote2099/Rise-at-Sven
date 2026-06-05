@@ -69,19 +69,19 @@ export default function StackedCards() {
         },
       });
 
+      const flyDist = window.innerHeight * 1.2;
+
       // Card 0 (bottom/white): rotate CCW and fly up first
       tl.to(cardRefs.current[2], {
         rotation: -50,
-        y: -800,
-       
+        y: -flyDist,
         duration: 1,
         ease: 'power2.inOut',
       }, 0);
 
       tl.to(cardRefs.current[1], {
         rotation: -50,
-        y: -800,
-      
+        y: -flyDist,
         duration: 1,
         ease: 'power2.inOut',
       }, 0.8);
@@ -89,7 +89,7 @@ export default function StackedCards() {
       // Card 2 (top/black): straighten as others leave
       tl.to(cardRefs.current[0], {
         rotation: -50,
-        y: -800,
+        y: -flyDist,
         duration: 1,
         ease: 'power1.out',
       }, 1.6);
@@ -99,8 +99,8 @@ export default function StackedCards() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative flex items-center justify-center" style={{ height: '100vh' }}>
-      <div className="relative w-full max-w-xl px-4" style={{ height: '560px' }}>
+    <div ref={sectionRef} className="relative flex items-center justify-center overflow-hidden" style={{ height: '100vh' }}>
+      <div className="relative w-full max-w-sm sm:max-w-lg md:max-w-xl px-4" style={{ height: '560px' }}>
         {CARDS.map((card, i) => (
           <div
             key={i}

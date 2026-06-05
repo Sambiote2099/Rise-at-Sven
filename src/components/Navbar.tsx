@@ -103,17 +103,17 @@ function DropdownPanel({ subLinks }: { subLinks: SubLink[] }) {
   const col2 = subLinks.slice(half);
 
   return (
-    <div className="fixed left-1/2 transition-all duration-500 -translate-x-1/2 mt-8 h-[280px] w-[min(850px,90vw)] scale-110 bg-white rounded-2xl shadow-2xl p-6 flex gap-6 z-50">
+    <div className="fixed left-1/2 transition-all duration-500 -translate-x-1/2 mt-8 h-[280px] w-[min(850px,92vw)] bg-white rounded-2xl shadow-2xl p-6 flex gap-6 z-50">
       {/* Links */}
       <div className="flex gap-10 lg:gap-18 flex-10 justify-center">
         <p className="absolute left-15 mt-6 scale-95 text-slate-500 font-sans hidden lg:block">core services</p>
-        <div className="justify-center scale-110 lg:scale-120 flex flex-col gap-1">
+        <div className="justify-center flex flex-col gap-1">
           {col1.map((sub) => (
             <SubLinkItem key={sub.label} label={sub.label} image={sub.image} onHover={handleHover} />
           ))}
         </div>
         {col2.length > 0 && (
-          <div className="justify-center scale-110 lg:scale-120 flex flex-col gap-1">
+          <div className="justify-center flex flex-col gap-1">
             {col2.map((sub) => (
               <SubLinkItem key={sub.label} label={sub.label} image={sub.image} onHover={handleHover} />
             ))}
@@ -122,7 +122,7 @@ function DropdownPanel({ subLinks }: { subLinks: SubLink[] }) {
       </div>
 
       {/* Image */}
-      <div className="w-[180px] lg:w-[220px] h-[232px] scale-110 rounded-xl overflow-hidden flex-shrink-0 relative hidden md:block">
+      <div className="w-[180px] lg:w-[220px] h-[232px] rounded-xl overflow-hidden flex-shrink-0 relative hidden md:block">
         <Image
           src={activeImage}
           alt="preview"
@@ -217,7 +217,7 @@ export default function Navbar({ onMenuChange }: { onMenuChange?: (open: boolean
     <>
       <MobileMenu open={mobileOpen} onClose={toggleMobile} isAtTop={isAtTop} />
       <nav
-        className={`fixed top-12 left-0 right-0 z-[999] mx-auto mt-4 w-[98%]
+        className={`fixed top-4 sm:top-12 left-0 right-0 z-[999] mx-auto mt-0 sm:mt-4 w-[96%] sm:w-[98%]
           rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between
           transition-transform transition-colors duration-500 ease-in-out
           ${isVisible ? 'translate-y-0' : '-translate-y-[140%]'}

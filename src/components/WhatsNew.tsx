@@ -80,7 +80,7 @@ function PostCard({ post }: { post: typeof POSTS[0] }) {
       onMouseMove={onMouseMove}
     >
       {/* Image container */}
-      <div className="relative w-full h-[412px] rounded-3xl overflow-hidden">
+      <div className="relative w-full h-[260px] sm:h-[340px] md:h-[412px] rounded-3xl overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}

@@ -16,12 +16,16 @@ export default function SmoothScroll({
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
+    // ScrollSmoother needs body overflow hidden; skip on touch devices
+    // to avoid fighting native scroll
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
     const smoother = ScrollSmoother.create({
       wrapper: wrapperRef.current!,
       content: contentRef.current!,
-      smooth: 1,
-      effects: true,
-      normalizeScroll: true,
+      smooth: isTouchDevice ? 0 : 1,
+      effects: !isTouchDevice,
+      normalizeScroll: false,
     })
 
     return () => {

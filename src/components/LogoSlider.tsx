@@ -103,9 +103,9 @@ export default function LogoSlider() {
       <div className="absolute right-0 top-0 h-full w-64 z-10 pointer-events-none"
         style={{ backdropFilter: 'blur(3px)', maskImage: 'linear-gradient(to left, white 30%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to left, black 0%, transparent 100%)' }}
       />
-      <div ref={trackRef} className="flex w-max gap-32">
+      <div ref={trackRef} className="flex w-max gap-8 sm:gap-16 md:gap-32">
         {items.map((logo, i) => (
-          <div key={i} className="flex items-center mx-12 flex-shrink-0">
+          <div key={i} className="flex items-center mx-4 sm:mx-8 md:mx-12 flex-shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logo.src}

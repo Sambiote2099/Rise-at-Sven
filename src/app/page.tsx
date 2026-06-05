@@ -74,7 +74,7 @@ export default function Home() {
           </button>
         </section>
 
-        <section className="relative mt-2 h-[420px] sm:h-[520px] md:h-[620px] rounded-3xl overflow-hidden">
+        <section className="relative mt-2 h-[460px] sm:h-[520px] md:h-[620px] rounded-3xl overflow-hidden">
           {/* Fixed navbar outside overflow-hidden hero */}
     
         <Navbar onMenuChange={setNavOpen} />
@@ -94,12 +94,12 @@ export default function Home() {
                 />
             </div>
 
-            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex top-32 sm:top-38 md:top-44 justify-center text-white text-[52px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
+            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex top-28 sm:top-38 md:top-44 justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
               <AnimatedTextDown text="We" delay={1.4} />
               <AnimatedTextDown text="Create" delay={1.45} />
             </div>
 
-            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex items-center top-24 sm:top-30 md:top-36 justify-center text-white text-[52px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
+            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex items-center top-20 sm:top-30 md:top-36 justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
               <AnimatedTextDown text="Category" delay={1.4} />
 
               {/* Inline image — starts at width 0, expands from center */}
@@ -119,7 +119,7 @@ export default function Home() {
 
               <AnimatedTextDown text="Leaders" delay={1.45} />
             </div>
-            <div className="absolute inset-0 z-10 flex items-center top-64 sm:top-76 md:top-90 justify-center text-white text-[14px] sm:text-[20px] md:text-[28px] font-sans font-semibold px-4 text-center">
+            <div className="absolute inset-0 z-10 flex items-center top-56 sm:top-76 md:top-90 justify-center text-white text-[13px] sm:text-[20px] md:text-[28px] font-sans font-semibold px-4 text-center">
               on every searchable platform
             </div>
         
@@ -205,7 +205,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="scale-97 mt-1">
+        <section className="scale-97 mt-1 overflow-hidden">
           <FeaturedWork />
           <div className="flex justify-center mt-8">
            <button className="hover:rounded-lg rounded-[25px] transition-all duration-500 relative py-3 px-6 bg-white text-[16px] group overflow-hidden">
