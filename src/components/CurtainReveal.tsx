@@ -19,12 +19,12 @@ export default function CurtainReveal() {
   return (
     <div
       ref={curtainRef}
-      className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden"
+      className="fixed inset-0 z-[9999] pointer-events-none"
       style={{ backgroundColor: "#b2f6e3" }}
     >
-      {/* Arc hangs below the curtain's bottom edge, moves with it */}
+      {/* Arc hangs below the curtain's bottom edge and travels with it */}
       <svg
-        viewBox="0 0 1440 200"
+        viewBox="0 0 1440 160"
         preserveAspectRatio="none"
         aria-hidden="true"
         style={{
@@ -32,12 +32,11 @@ export default function CurtainReveal() {
           top: "100%",
           left: 0,
           width: "100%",
-          height: "200px",
+          height: "160px",
           display: "block",
-          overflow: "hidden",
         }}
       >
-        <path d="M0,200 Q720,0 1440,200 L1440,0 L0,0 Z" fill="#b2f6e3" />
+        <path d="M0,160 Q720,0 1440,160 L1440,0 L0,0 Z" fill="#b2f6e3" />
       </svg>
     </div>
   );

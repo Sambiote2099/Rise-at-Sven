@@ -75,58 +75,63 @@ export default function Home() {
         </section>
 
         <section className="relative mt-2 h-[460px] sm:h-[520px] md:h-[620px] rounded-3xl overflow-hidden">
-          {/* Fixed navbar outside overflow-hidden hero */}
-    
-        <Navbar onMenuChange={setNavOpen} />
-      
-            
-            <div className="absolute inset-0 z-20 mt-20 sm:mt-24 md:mt-28 items-center flex flex-col font-sans font-semibold text-[12px] sm:text-[13px] md:text-[14px]">
-              <p>#1MOST RECOMMENDED</p>
-            </div>
-            <div className="absolute inset-0 z-20 mt-24 sm:mt-28 md:mt-32 items-center flex flex-col font-sans font-semibold text-[12px] sm:text-[13px] md:text-[14px]">
+          <Navbar onMenuChange={setNavOpen} />
+
+          {/* Hero text — stacked flex column, centered */}
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-start pt-16 sm:pt-24 md:pt-24 gap-0 pointer-events-none">
+
+            {/* Badge labels */}
+            <div className="flex flex-col items-center font-sans font-semibold text-[11px] sm:text-[13px] md:text-[14px] text-white">
+              <p>#1 MOST RECOMMENDED</p>
               <p>CONTENT MARKETING AGENCY</p>
               <Image
-                  src="https://res.cloudinary.com/diasvvkil/image/upload/v1778518931/Screenshot_11-5-2026_225558_riseatseven.com-removebg-preview_luiapj.png"
-                  alt="Leaderboard"
-                  width={305}
-                  height={47}
-                  className="w-[180px] sm:w-[240px] md:w-[305px] h-auto"
-                />
+                src="https://res.cloudinary.com/diasvvkil/image/upload/v1778518931/Screenshot_11-5-2026_225558_riseatseven.com-removebg-preview_luiapj.png"
+                alt="Rise at Seven"
+                width={305}
+                height={47}
+                className="w-[140px] sm:w-[200px] md:w-[300px] h-auto"
+              />
             </div>
 
-            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex top-28 sm:top-38 md:top-44 justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
-              <AnimatedTextDown text="We" delay={1.4} />
-              <AnimatedTextDown text="Create" delay={1.45} />
-            </div>
-
-            <div className="absolute gap-1 sm:gap-2 md:gap-3 inset-0 z-10 flex items-center top-20 sm:top-30 md:top-36 justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
-              <AnimatedTextDown text="Category" delay={1.4} />
-
-              {/* Inline image — starts at width 0, expands from center */}
-              <div
-                ref={inlineImageRef}
-                className="overflow-hidden rounded-2xl flex-shrink-0 h-14 sm:h-22 md:h-31 hidden sm:block"
-                style={{ width: 0, opacity: 0 }}
-              >
-                <Image
-                  src={image}
-                  alt="Leaderboard"
-                  width={1200}
-                  height={600}
-                  className="object-cover w-full h-full"
-                />
+            {/* Big headline */}
+            <div className="flex flex-col items-center gap-0">
+                {/* We Create */}
+              <div className="flex gap-1 sm:gap-2 md:gap-3 justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold leading-none">
+                <AnimatedTextDown text="We" delay={1.4} />
+                <AnimatedTextDown text="Create" delay={1.45} />
+              </div>
+              {/* Category [image] Leaders */}
+              <div className="flex gap-1 sm:gap-2 md:gap-3 items-center justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
+                <AnimatedTextDown text="Category" delay={1.4} />
+                <div
+                  ref={inlineImageRef}
+                  className="overflow-hidden rounded-2xl flex-shrink-0 h-10 sm:h-22 md:h-31 hidden sm:block"
+                  style={{ width: 0, opacity: 0 }}
+                >
+                  <Image
+                    src={image}
+                    alt=""
+                    width={1200}
+                    height={600}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <AnimatedTextDown text="Leaders" delay={1.45} />
               </div>
 
-              <AnimatedTextDown text="Leaders" delay={1.45} />
+            
             </div>
-            <div className="absolute inset-0 z-10 flex items-center top-56 sm:top-76 md:top-90 justify-center text-white text-[13px] sm:text-[20px] md:text-[28px] font-sans font-semibold px-4 text-center">
-              on every searchable platform
-            </div>
-        
 
+            {/* Subline */}
+            <p className="text-white text-[12px] sm:text-[18px] md:text-[24px] font-sans font-semibold px-4 text-center">
+              on every searchable platform
+            </p>
+          </div>
+
+          {/* Background image */}
           <Image
             src={image}
-            alt="Leaderboard"
+            alt="Hero background"
             width={1200}
             height={600}
             className="object-cover w-full h-full rounded-2xl blur-sm"
@@ -137,7 +142,8 @@ export default function Home() {
             <div className="flex flex-col max-w-[60%] sm:max-w-none">
               <p className="hidden sm:block">Organic media planners creating, distributing & optimising</p>
               <div className="flex flex-row gap-1 flex-wrap">
-                <p className="font-bold">search-first</p> <p className="hidden sm:block"> content for SEO, Social, PR, Ai and LLM search</p>
+                <p className="font-bold">search-first</p>
+                <p className="hidden sm:block">content for SEO, Social, PR, Ai and LLM search</p>
               </div>
             </div>
             <div className="flex flex-col items-end font-bold text-right">
@@ -145,7 +151,6 @@ export default function Home() {
               <p>UK, USA (New York) & EU</p>
             </div>
           </div>
-          
         </section>
         <section className="px-2 mt-4">
           <p className="text-black font-sans text-sm mb-2 ml-1">The agency behind</p>
