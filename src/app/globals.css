@@ -26,11 +26,16 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 #smooth-wrapper {
   width: 100%;
+  overflow-x: hidden;
 }
 
 #smooth-content {
-  overflow: visible;
+  overflow-x: hidden;
   width: 100%;
 }

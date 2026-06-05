@@ -52,26 +52,26 @@ export default function StackedCards() {
       if (!card) return;
       gsap.set(card, {
         rotation: INITIAL_ROTATIONS[i],
-        y: i * -8, // slight vertical offset for depth
+        y: i * -8,
         zIndex: i + 1,
       });
     });
+
+    const isMobile = window.innerWidth < 768;
+    const flyDist = window.innerHeight * 1.2;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=200%',
+          end: isMobile ? '+=120%' : '+=200%',
           pin: true,
           scrub: 1,
           anticipatePin: 1,
         },
       });
 
-      const flyDist = window.innerHeight * 1.2;
-
-      // Card 0 (bottom/white): rotate CCW and fly up first
       tl.to(cardRefs.current[2], {
         rotation: -50,
         y: -flyDist,
@@ -86,7 +86,6 @@ export default function StackedCards() {
         ease: 'power2.inOut',
       }, 0.8);
 
-      // Card 2 (top/black): straighten as others leave
       tl.to(cardRefs.current[0], {
         rotation: -50,
         y: -flyDist,
@@ -99,7 +98,9 @@ export default function StackedCards() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative flex items-center justify-center overflow-hidden" style={{ height: '100vh' }}>
+    <div ref={sectionRef} className="relative flex items-center justify-center" style={{ height: '100vh' }}>
+      {/* Clip wrapper keeps flying cards from causing horizontal scroll without blocking ScrollTrigger pin */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" />
       <div className="relative w-full max-w-sm sm:max-w-lg md:max-w-xl px-4" style={{ height: '560px' }}>
         {CARDS.map((card, i) => (
           <div
