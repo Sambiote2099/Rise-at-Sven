@@ -217,7 +217,7 @@ export default function Navbar({ onMenuChange }: { onMenuChange?: (open: boolean
     <>
       <MobileMenu open={mobileOpen} onClose={toggleMobile} isAtTop={isAtTop} />
       <nav
-        className={`fixed top-4 sm:top-12 left-0 right-0 z-[999] mx-auto mt-0 sm:mt-4 w-[96%] sm:w-[98%]
+        className={`fixed top-4 sm:top-12 left-0 right-0 z-[999] mx-auto mt-4 w-[96%] sm:w-[98%]
           rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between
           transition-transform transition-colors duration-500 ease-in-out
           ${isVisible ? 'translate-y-0' : '-translate-y-[140%]'}
