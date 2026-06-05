@@ -7,10 +7,12 @@ export default function CurtainReveal() {
   const curtainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!curtainRef.current) return;
+    const el = curtainRef.current;
+    if (!el) return;
 
-    gsap.to(curtainRef.current, {
-      yPercent: -110,
+    // Translate up by the full rendered height so arc clears the screen completely
+    gsap.to(el, {
+      y: -el.offsetHeight,
       duration: 2,
       ease: "power1.out",
     });

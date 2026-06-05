@@ -101,7 +101,7 @@ export default function Home() {
                 <AnimatedTextDown text="Create" delay={1.45} />
               </div>
               {/* Category [image] Leaders */}
-              <div className="flex gap-1 sm:gap-2 md:gap-3 items-center justify-center text-white text-[42px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
+              <div className="flex gap-1 sm:gap-2 md:gap-3 items-center justify-center text-white text-[38px] sm:text-[88px] md:text-[125px] font-sans font-semibold">
                 <AnimatedTextDown text="Category" delay={1.4} />
                 <div
                   ref={inlineImageRef}
