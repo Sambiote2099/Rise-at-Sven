@@ -1,44 +1,50 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+
+const COLOR = "#b2f6e3";
+const ARC_H = 120;
 
 export default function CurtainReveal() {
   const curtainRef = useRef<HTMLDivElement>(null);
+  const [arcY, setArcY] = useState(88); // fallback
 
   useEffect(() => {
+    // Calculate where 100vh falls as a % of the total curtain height
+    const pct = (window.innerHeight / (window.innerHeight + ARC_H)) * 100;
+    setArcY(Math.round(pct * 10) / 10);
+
     const el = curtainRef.current;
     if (!el) return;
-
-    // Translate up by the full rendered height so arc clears the screen completely
-    gsap.to(el, {
-      y: -el.offsetHeight,
-      duration: 2,
-      ease: "power1.out",
-    });
+    const totalH = window.innerHeight + ARC_H;
+    gsap.fromTo(el, { y: 0 }, { y: -totalH, duration: 2, ease: "power1.out" });
   }, []);
 
   return (
     <div
       ref={curtainRef}
-      className="fixed inset-0 z-[9999] pointer-events-none"
-      style={{ backgroundColor: "#b2f6e3" }}
+      className="fixed left-0 top-0 right-0 z-[9999] pointer-events-none"
+      style={{ height: `calc(100vh + ${ARC_H}px)` }}
     >
-      {/* Arc hangs below the curtain's bottom edge and travels with it */}
+      {/*
+        Single SVG covers the full curtain div.
+        viewBox 0 0 100 100 with preserveAspectRatio="none" maps
+        perfectly to any screen size.
+        The path is solid from y=0 to y=arcY, then the bottom edge
+        curves down to y=100 at centre — a smooth concave arc.
+      */}
       <svg
-        viewBox="0 0 1440 160"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
         preserveAspectRatio="none"
+        viewBox="0 0 100 100"
         aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "100%",
-          left: 0,
-          width: "100%",
-          height: "160px",
-          display: "block",
-        }}
       >
-        <path d="M0,160 Q720,0 1440,160 L1440,0 L0,0 Z" fill="#b2f6e3" />
+        <path
+          d={`M0,0 L100,0 L100,${arcY} Q50,${arcY - 30} 0,${arcY} Z`}
+          fill={COLOR}
+        />
       </svg>
     </div>
   );
